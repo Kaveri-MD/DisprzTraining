@@ -1,16 +1,8 @@
 using DisprzTraining.Business;
-using DisprzTraining.Controllers;
 using DisprzTraining.DataAccess;
-using Microsoft.AspNetCore.Mvc;
 using Moq;
 using DisprzTraining.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FluentAssertions;
-using Microsoft.DotNet.Scaffolding.Shared.CodeModifier.CodeChange;
 
 
 namespace DisprzTraining.Tests
@@ -85,11 +77,11 @@ namespace DisprzTraining.Tests
         public async Task GetAppointmentByEvent_WithexistingItem_ReturnsType()
         {
             //Arrange
-            mockDAL.Setup(repo => repo.GetAppointmentByEventDALAsync(items[0].EventName)).ReturnsAsync(items);
+            mockDAL.Setup(repo => repo.GetAppointmentByEventDALAsync(obj.EventName)).ReturnsAsync(obj);
             // Act
-            var result = await BussinessLayer.GetAppointmentByEventBLAsync(items[0].EventName);
+            var result = await BussinessLayer.GetAppointmentByEventBLAsync(obj.EventName);
             // Assert
-            result.Should().BeOfType<List<Appointment>>();
+            result.Should().BeOfType<Appointment>();
         }
 
         [Fact]
